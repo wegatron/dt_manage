@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QtGui>
 #include <QStandardItemModel>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -31,6 +32,7 @@ void MainWindow::on_actionIn_out_triggered()
         inout_model->setHorizontalHeaderItem(5, new QStandardItem(QObject::tr("发货数")));
     inout_model->setHorizontalHeaderItem(6, new QStandardItem(QObject::tr("领料")));
     inout_model->setHorizontalHeaderItem(7, new QStandardItem(QObject::tr("结存")));
+
     inout_model->setItem(0, 0, new QStandardItem("PPR热水管　25*4.2"));
         inout_model->setItem(0, 1, new QStandardItem("01/01/2011"));
             inout_model->setItem(0, 2, new QStandardItem("黄可振"));
@@ -40,7 +42,22 @@ void MainWindow::on_actionIn_out_triggered()
             inout_model->setItem(0, 6, new QStandardItem(""));
             inout_model->setItem(0, 7, new QStandardItem("5396"));
 
-    ui->table_inout->setModel(inout_model);
+            inout_model->setItem(1, 0, new QStandardItem("PPR热水管　25*4.21"));
+                inout_model->setItem(1, 1, new QStandardItem("01/01/2011"));
+                    inout_model->setItem(1, 2, new QStandardItem("黄可振"));
+                    inout_model->setItem(1, 3, new QStandardItem("7565"));
+                    inout_model->setItem(1, 4, new QStandardItem(""));
+                    inout_model->setItem(1, 5, new QStandardItem("708"));
+                    inout_model->setItem(1, 6, new QStandardItem(""));
+                    inout_model->setItem(1, 7, new QStandardItem("5396"));
+
+            QSortFilterProxyModel *sort_filter = new QSortFilterProxyModel(this);
+              sort_filter->setSourceModel(inout_model);
+               sort_filter->sort (0);
+             ui->table_inout->setModel (sort_filter);
+             ui->table_inout->setSortingEnabled(true);
+
+    //ui->table_inout->setModel(inout_model);
     ui->widgetInOut->show();
 }
 
