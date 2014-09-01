@@ -13,8 +13,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    querymainwindow.cpp \
+    inoutdialog.cpp \
+    stockmainwindow.cpp \
+    productmanagemainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    querymainwindow.h \
+    inoutdialog.h \
+    stockmainwindow.h \
+    productmanagemainwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    querymainwindow.ui \
+    inoutdialog.ui \
+    stockmainwindow.ui \
+    product_manage.ui

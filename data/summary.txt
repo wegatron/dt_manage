@@ -1,0 +1,80 @@
+在表格中PPR配件白色.xls中
+日期	内容摘要	单号	生产入库	发货	领料	结存
+
+与内丝、外丝、异径三通.xls中
+日期	摘要	单号	收入	发出	领料	结存
+
+这个收入和生产入库有区别吗？另外发出 库存减少; 生产入库（收入）库存增加
+那这个领料是什么意思?
+
+数据库表:
+产品表(product)
+{
+id //产品编号
+name //产品名称
+unit //单位
+price //价格
+specification //规格
+quality_remain //现在库存数量
+remarks //备注
+}
+
+-- Describe PRODUCT
+CREATE TABLE product (
+    "id" TEXT PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "unit" TEXT NOT NULL,
+    "price" REAL NOT NULL,
+    "specification" TEXT NOT NULL,
+    "quality_remain" INTEGER  NOT NULL  DEFAULT (0)，
+    "remarks" TEXT
+)
+
+
+订单表(order_list)
+{
+id // 订单编号
+date //订单日期
+sign_people //签收人
+operator //操作人
+remarks //备注
+}
+-- Describe ORDER_LIST
+CREATE TABLE order_list (
+    "id" TEXT PRIMARY KEY,
+    "date" TEXT NOT NULL,
+    "sign_people" TEXT NOT NULL,
+    "operator" TEXT NOT NULL,
+    "remarks" TEXT
+)
+
+出入库表(inout)
+{
+id // 主键 无意义
+product_id // foreign key refer to table product
+order_number //订单号
+abstract //摘要
+quality_change // 交易数量出库为负，入库为正
+quality_remain //剩下的数量
+}
+-- Describe INOUT
+CREATE TABLE inout (
+    "id" INTEGER PRIMARY KEY autoincrement,
+    "product_id" TEXT NOT NULL,
+    "order_number" TEXT NOT NULL,
+    "abstract" TEXT,
+    "quality_change" INTEGER NOT NULL,
+    "quality_remain" INTEGER NOT NULL,
+     FOREIGN KEY(product_id) REFERENCES product(id),
+     FOREIGN KEY(order_number) REFERENCES order_list(id)
+)
+
+界面：
+产品界面
+产品的添加删除修改
+
+订单界面
+订单的添加删除修改
+
+出入库界面
+出入库产品的添加删除修改
