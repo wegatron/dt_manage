@@ -5,6 +5,7 @@
 #include "ui_addproduct.h"
 
 #include "product.h"
+#include "database.h"
 
 AddProductDialog::AddProductDialog(QWidget *parent) :
     QDialog(parent),
@@ -26,14 +27,12 @@ void AddProductDialog::on_buttonBox_accepted()
     QString err_msg;
     if (ValidateProductData(pro_data,err_msg))
     {
-        QMessageBox::information(NULL, "信息有误", err_msg);
+        QMessageBox::information(this, "信息有误", err_msg);
         return;
     }
 
-    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("database");
-    //db.open();
-    QSqlQuery query;
+    QSqlDatabase &db = DtDataBase::getDtDataBase();
+    QSqlQuery query(db);
     query.prepare("insert into product(id, name, unit, price, specification, quality_remain, remarks) values(:id, :name, :unit, :price, :specification, :quality_remain, :remarks)");
     query.bindValue(":id", pro_data.p_id_s);
     query.bindValue(":name", pro_data.p_name_s);
@@ -42,11 +41,12 @@ void AddProductDialog::on_buttonBox_accepted()
     query.bindValue(":specification", pro_data.p_specification_s);
     query.bindValue(":quality_remain", pro_data.p_remain_s);
     query.bindValue(":remarks", pro_data.p_remark_s);
+
     if(query.exec())
     {
-        QMessageBox::information(NULL, "信息", "添加产品成功!");
+        QMessageBox::information(this, "信息", "添加产品成功!");
     } else {
-        QMessageBox::information(NULL, "信息", "添加产品失败!");
+        QMessageBox::information(this, "信息", "添加产品失败!");
     }
 }
 

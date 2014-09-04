@@ -17,16 +17,30 @@ SOURCES += main.cpp\
     querymainwindow.cpp \
     inoutdialog.cpp \
     stockmainwindow.cpp \
-    productmanagemainwindow.cpp
+    productmanagemainwindow.cpp \
+    addproduct.cpp \
+    product.cpp \
+    modifyproduct.cpp \
+    database.cpp \
+    ordermanagemainwindow.cpp
 
 HEADERS  += mainwindow.h \
     querymainwindow.h \
     inoutdialog.h \
     stockmainwindow.h \
-    productmanagemainwindow.h
+    productmanagemainwindow.h \
+    addproduct.h \
+    product.h \
+    dbcon.h \
+    modifyproduct.h \
+    database.h \
+    ordermanagemainwindow.h
 
 FORMS    += mainwindow.ui \
     querymainwindow.ui \
     inoutdialog.ui \
     stockmainwindow.ui \
-    product_manage.ui
+    product_manage.ui \
+    addproduct.ui \
+    modifyproduct.ui \
+    ordermanagemainwindow.ui

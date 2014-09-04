@@ -14,7 +14,7 @@ class InoutDialog : public QDialog
 public:
     explicit InoutDialog(QWidget *parent = 0);
     ~InoutDialog();
-    
+
 private:
     Ui::InoutDialog *ui;
 };
