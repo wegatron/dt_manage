@@ -42,3 +42,25 @@ int ValidateProductData(const ProductData &pro_data, QString &msg)
     }
     return 0;
 }
+
+int ValidateOrderData(const OrderData &order_data, QString &msg)
+{
+    if(order_data.id_s.length()==0)
+    {
+        msg = QString("订单编号不能为空！");
+        return 1;
+    }
+
+    if(order_data.sign_people_s.length()==0)
+    {
+        msg = QString("签收人不能为空！");
+        return 3;
+    }
+
+    if(order_data.operator_s.length()==0)
+    {
+        msg = QString("经办人不能为空！");
+        return 4;
+    }
+    return 0;
+}

@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     product.cpp \
     modifyproduct.cpp \
     database.cpp \
-    ordermanagemainwindow.cpp
+    ordermanagemainwindow.cpp \
+    addorder.cpp \
+    modifyorder.cpp
 
 HEADERS  += mainwindow.h \
     querymainwindow.h \
@@ -34,7 +36,9 @@ HEADERS  += mainwindow.h \
     dbcon.h \
     modifyproduct.h \
     database.h \
-    ordermanagemainwindow.h
+    ordermanagemainwindow.h \
+    addorder.h \
+    modifyorder.h
 
 FORMS    += mainwindow.ui \
     querymainwindow.ui \
@@ -43,4 +47,6 @@ FORMS    += mainwindow.ui \
     product_manage.ui \
     addproduct.ui \
     modifyproduct.ui \
-    ordermanagemainwindow.ui
+    ordermanagemainwindow.ui \
+    addorder.ui \
+    modifyorderdialog.ui

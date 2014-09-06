@@ -11,11 +11,15 @@ ProductManageMainWindow::ProductManageMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ProductManageMainWindow)
 {
+    product_model = new QStandardItemModel();
+    sort_filter = new QSortFilterProxyModel(this);
     ui->setupUi(this);
 }
 
 ProductManageMainWindow::~ProductManageMainWindow()
 {
+  delete sort_filter;
+  delete product_model;
     delete ui;
 }
 
@@ -24,35 +28,33 @@ void ProductManageMainWindow::reload_query()
     QSqlDatabase &db = DtDataBase::getDtDataBase();
     QSqlQuery query(db);
     query.exec("select * from product");
-    QStandardItemModel *inout_model = new QStandardItemModel();
-    inout_model->setHorizontalHeaderItem(0, new QStandardItem(QObject::tr("产品编号")));
-    inout_model->setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("产品名称")));
-    inout_model->setHorizontalHeaderItem(2, new QStandardItem(QObject::tr("单位")));
-    inout_model->setHorizontalHeaderItem(3, new QStandardItem(QObject::tr("单价(元)")));
-    inout_model->setHorizontalHeaderItem(4, new QStandardItem(QObject::tr("规格")));
-    inout_model->setHorizontalHeaderItem(5, new QStandardItem(QObject::tr("库存")));
-    inout_model->setHorizontalHeaderItem(6, new QStandardItem(QObject::tr("备注")));
+    product_model->clear();
+    product_model->setHorizontalHeaderItem(0, new QStandardItem(QObject::tr("产品编号")));
+    product_model->setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("产品名称")));
+    product_model->setHorizontalHeaderItem(2, new QStandardItem(QObject::tr("单位")));
+    product_model->setHorizontalHeaderItem(3, new QStandardItem(QObject::tr("单价(元)")));
+    product_model->setHorizontalHeaderItem(4, new QStandardItem(QObject::tr("规格")));
+    product_model->setHorizontalHeaderItem(5, new QStandardItem(QObject::tr("库存")));
+    product_model->setHorizontalHeaderItem(6, new QStandardItem(QObject::tr("备注")));
     int i = 0;
     while (query.next()) {
-        inout_model->setItem(i, 0, new QStandardItem(query.value(0).toString()));
-        inout_model->setItem(i, 1, new QStandardItem(query.value(1).toString()));
-        inout_model->setItem(i, 2, new QStandardItem(query.value(2).toString()));
-        inout_model->setItem(i, 3, new QStandardItem(query.value(3).toString()));
-        inout_model->setItem(i, 4, new QStandardItem(query.value(4).toString()));
-        inout_model->setItem(i, 5, new QStandardItem(query.value(5).toString()));
-        inout_model->setItem(i, 6, new QStandardItem(query.value(6).toString()));
+        product_model->setItem(i, 0, new QStandardItem(query.value(0).toString()));
+        product_model->setItem(i, 1, new QStandardItem(query.value(1).toString()));
+        product_model->setItem(i, 2, new QStandardItem(query.value(2).toString()));
+        product_model->setItem(i, 3, new QStandardItem(query.value(3).toString()));
+        product_model->setItem(i, 4, new QStandardItem(query.value(4).toString()));
+        product_model->setItem(i, 5, new QStandardItem(query.value(5).toString()));
+        product_model->setItem(i, 6, new QStandardItem(query.value(6).toString()));
         ++i;
     }
 
-    QSortFilterProxyModel *sort_filter = new QSortFilterProxyModel(this);
-    sort_filter->setSourceModel(inout_model);
+    sort_filter->clear();
+    sort_filter->setSourceModel(product_model);
     sort_filter->sort (0);
     ui->table_product->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->table_product->setModel (sort_filter);
     ui->table_product->setSortingEnabled(true);
     ui->table_product->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    //ui->table_product->setTextElideMode();
-    //ui->table_product->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 void ProductManageMainWindow::on_add_clicked()
@@ -140,28 +142,28 @@ void ProductManageMainWindow::on_pushButton_clicked()
         query.prepare("select * from product");
     }
     query.exec();
-    QStandardItemModel *inout_model = new QStandardItemModel();
-    inout_model->setHorizontalHeaderItem(0, new QStandardItem(QObject::tr("产品编号")));
-    inout_model->setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("产品名称")));
-    inout_model->setHorizontalHeaderItem(2, new QStandardItem(QObject::tr("单位")));
-    inout_model->setHorizontalHeaderItem(3, new QStandardItem(QObject::tr("单价(元)")));
-    inout_model->setHorizontalHeaderItem(4, new QStandardItem(QObject::tr("规格")));
-    inout_model->setHorizontalHeaderItem(5, new QStandardItem(QObject::tr("库存")));
-    inout_model->setHorizontalHeaderItem(6, new QStandardItem(QObject::tr("备注")));
+    product_model->clear();
+    product_model->setHorizontalHeaderItem(0, new QStandardItem(QObject::tr("产品编号")));
+    product_model->setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("产品名称")));
+    product_model->setHorizontalHeaderItem(2, new QStandardItem(QObject::tr("单位")));
+    product_model->setHorizontalHeaderItem(3, new QStandardItem(QObject::tr("单价(元)")));
+    product_model->setHorizontalHeaderItem(4, new QStandardItem(QObject::tr("规格")));
+    product_model->setHorizontalHeaderItem(5, new QStandardItem(QObject::tr("库存")));
+    product_model->setHorizontalHeaderItem(6, new QStandardItem(QObject::tr("备注")));
     int i = 0;
     while (query.next()) {
-        inout_model->setItem(i, 0, new QStandardItem(query.value(0).toString()));
-        inout_model->setItem(i, 1, new QStandardItem(query.value(1).toString()));
-        inout_model->setItem(i, 2, new QStandardItem(query.value(2).toString()));
-        inout_model->setItem(i, 3, new QStandardItem(query.value(3).toString()));
-        inout_model->setItem(i, 4, new QStandardItem(query.value(4).toString()));
-        inout_model->setItem(i, 5, new QStandardItem(query.value(5).toString()));
-        inout_model->setItem(i, 6, new QStandardItem(query.value(6).toString()));
+        product_model->setItem(i, 0, new QStandardItem(query.value(0).toString()));
+        product_model->setItem(i, 1, new QStandardItem(query.value(1).toString()));
+        product_model->setItem(i, 2, new QStandardItem(query.value(2).toString()));
+        product_model->setItem(i, 3, new QStandardItem(query.value(3).toString()));
+        product_model->setItem(i, 4, new QStandardItem(query.value(4).toString()));
+        product_model->setItem(i, 5, new QStandardItem(query.value(5).toString()));
+        product_model->setItem(i, 6, new QStandardItem(query.value(6).toString()));
         ++i;
     }
 
-    QSortFilterProxyModel *sort_filter = new QSortFilterProxyModel(this);
-    sort_filter->setSourceModel(inout_model);
+    sort_filter->clear();
+    sort_filter->setSourceModel(product_model);
     sort_filter->sort (0);
     ui->table_product->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     ui->table_product->setModel (sort_filter);

@@ -3,8 +3,12 @@
 
 #include <QMainWindow>
 
+#include <QtGui>
+#include <QStandardItemModel>
+
 #include "addproduct.h"
 #include "modifyproduct.h"
+
 namespace Ui {
 class ProductManageMainWindow;
 }
@@ -28,6 +32,8 @@ private slots:
 
 private:
     Ui::ProductManageMainWindow *ui;
+    QStandardItemModel *product_model;
+    QSortFilterProxyModel *sort_filter;
     AddProductDialog add_product_dialog;
     ModifyProductDialog modify_product_dialog;
 };

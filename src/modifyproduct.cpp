@@ -47,7 +47,7 @@ void ModifyProductDialog::on_buttonBox_accepted()
     QString err_msg;
     if (ValidateProductData(pro_data,err_msg))
     {
-        QMessageBox::information(NULL, "信息有误", err_msg);
+        QMessageBox::information(this, "信息有误", err_msg);
         return;
     }
 
@@ -66,8 +66,8 @@ void ModifyProductDialog::on_buttonBox_accepted()
 
     if(query.exec())
     {
-        QMessageBox::information(NULL, "信息", "修改产品成功!");
+        QMessageBox::information(this, "信息", "修改产品成功!");
     } else {
-        QMessageBox::information(NULL, "信息", "修改产品失败!");
+        QMessageBox::information(this, "信息", "修改产品失败!");
     }
 }

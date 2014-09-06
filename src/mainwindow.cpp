@@ -33,3 +33,9 @@ void MainWindow::on_pushButton_3_clicked()
     product_manage_window.reload_query();
     product_manage_window.show();
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    order_manage_window.reload_query();
+    order_manage_window.show();
+}

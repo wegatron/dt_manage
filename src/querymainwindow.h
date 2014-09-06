@@ -2,6 +2,8 @@
 #define QUERYMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtGui>
+#include <QStandardItemModel>
 
 #include "inoutdialog.h"
 
@@ -23,6 +25,8 @@ private slots:
     void on_inout_add_clicked();
 
 private:
+    QStandardItemModel *inout_model;
+    QSortFilterProxyModel *sort_filter;
     Ui::QueryMainWindow *ui;
     InoutDialog inout_dlg;
 };

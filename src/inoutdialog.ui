@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>产品出入库</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="6" column="1">

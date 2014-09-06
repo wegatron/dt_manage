@@ -1,24 +1,26 @@
 #include "querymainwindow.h"
 #include "ui_querymainwindow.h"
 
-#include <QtGui>
-#include <QStandardItemModel>
-
 QueryMainWindow::QueryMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::QueryMainWindow)
 {
+    inout_model = new QStandardItemModel();
+    sort_filter = new QSortFilterProxyModel(this);
     ui->setupUi(this);
 }
 
 QueryMainWindow::~QueryMainWindow()
 {
-    delete ui;
+  delete sort_filter;
+  delete inout_model;
+  delete ui;
 }
 
 void QueryMainWindow::reload_query()
 {
-    QStandardItemModel *inout_model = new QStandardItemModel();
+
+    inout_model->clear();
     inout_model->setHorizontalHeaderItem(0, new QStandardItem(QObject::tr("产品")));
     inout_model->setHorizontalHeaderItem(1, new QStandardItem(QObject::tr("日期")));
     inout_model->setHorizontalHeaderItem(2, new QStandardItem(QObject::tr("内容摘要")));
@@ -46,7 +48,7 @@ void QueryMainWindow::reload_query()
     inout_model->setItem(1, 6, new QStandardItem(""));
     inout_model->setItem(1, 7, new QStandardItem("5396"));
 
-    QSortFilterProxyModel *sort_filter = new QSortFilterProxyModel(this);
+    sort_filter->clear();
     sort_filter->setSourceModel(inout_model);
     sort_filter->sort (0);
     ui->table_inout->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
