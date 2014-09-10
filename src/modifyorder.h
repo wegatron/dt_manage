@@ -15,9 +15,9 @@ class ModifyOrderDialog : public QDialog
 public:
     explicit ModifyOrderDialog(QWidget *parent = 0);
     ~ModifyOrderDialog();
-    void setOrderData(OrderData &order_data);
+    void setOrderData(const OrderData &order_data);
     void getOrderData(OrderData &order_data);
-    void setOriId(QString &id) { ori_id = id; }
+    void setOriId(const QString &id) { ori_id = id; }
 private slots:
     void on_buttonBox_accepted();
 

@@ -8,9 +8,12 @@ QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += release
+
 TARGET = dt_manage
 TEMPLATE = app
 
+INCLUDEPATH += ext_h
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -24,7 +27,9 @@ SOURCES += main.cpp\
     database.cpp \
     ordermanagemainwindow.cpp \
     addorder.cpp \
-    modifyorder.cpp
+    modifyorder.cpp \
+    inoutmodify.cpp \
+    excel.cpp
 
 HEADERS  += mainwindow.h \
     querymainwindow.h \
@@ -38,7 +43,9 @@ HEADERS  += mainwindow.h \
     database.h \
     ordermanagemainwindow.h \
     addorder.h \
-    modifyorder.h
+    modifyorder.h \
+    inoutmodify.h \
+    excel.h
 
 FORMS    += mainwindow.ui \
     querymainwindow.ui \
@@ -49,4 +56,8 @@ FORMS    += mainwindow.ui \
     modifyproduct.ui \
     ordermanagemainwindow.ui \
     addorder.ui \
-    modifyorderdialog.ui
+    modifyorderdialog.ui \
+    inoutmodify.ui
+
+LIBS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so
+PRE_TARGETDEPS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so

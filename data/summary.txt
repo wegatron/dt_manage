@@ -51,19 +51,24 @@ CREATE TABLE order_list (
 {
 id // 主键 无意义
 product_id // foreign key refer to table product
+product_name // product name
 order_number //订单号
-abstract //摘要
+date // date of the order
 quality_change // 交易数量出库为负，入库为正
 quality_remain //剩下的数量
+abstract //摘要
 }
+
 -- Describe INOUT
 CREATE TABLE inout (
     "id" INTEGER PRIMARY KEY autoincrement,
     "product_id" TEXT NOT NULL,
+    "product_name" TEXT NOT NULL,
     "order_number" TEXT NOT NULL,
-    "abstract" TEXT,
+    "date" TEXT NOT NULL,
     "quality_change" INTEGER NOT NULL,
     "quality_remain" INTEGER NOT NULL,
+    "abstract" TEXT,
      FOREIGN KEY(product_id) REFERENCES product(id),
      FOREIGN KEY(order_number) REFERENCES order_list(id)
 )

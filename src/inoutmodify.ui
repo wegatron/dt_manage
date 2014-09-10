@@ -1,91 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>InoutDialog</class>
- <widget class="QDialog" name="InoutDialog">
+ <class>InoutModifyDialog</class>
+ <widget class="QDialog" name="InoutModifyDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
+    <width>308</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>产品出入库</string>
+   <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>内容摘要</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>产品编号 *</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>单号 *</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>产品名称/规格*</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>数量(入库+;出库-) *</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QLineEdit" name="abstract_2"/>
-   </item>
-   <item row="1" column="1">
+   <item row="0" column="1">
     <widget class="QComboBox" name="p_id">
      <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;添加&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>产品名称/规格*</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="1" column="1">
+    <widget class="QComboBox" name="p_name_spec">
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>单号 *</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
     <widget class="QComboBox" name="order_id">
      <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="6" column="1">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>数量(入库+;出库-) *</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
     <widget class="QLineEdit" name="quality_change"/>
    </item>
-   <item row="2" column="1">
-    <widget class="QComboBox" name="p_name_spec">
-     <property name="editable">
-      <bool>true</bool>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>内容摘要</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="abstract_2"/>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
@@ -96,7 +93,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>InoutDialog</receiver>
+   <receiver>InoutModifyDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -112,7 +109,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>InoutDialog</receiver>
+   <receiver>InoutModifyDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

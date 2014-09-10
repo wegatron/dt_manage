@@ -17,7 +17,7 @@ ModifyOrderDialog::~ModifyOrderDialog()
     delete ui;
 }
 
-void ModifyOrderDialog::setOrderData(OrderData &order_data)
+void ModifyOrderDialog::setOrderData(const OrderData &order_data)
 {
     ui->id->setText(order_data.id_s);
     QDate date = QDate::fromString ( order_data.date_s, "yyyy'-'MM'-'dd" );

@@ -24,9 +24,6 @@
        </sizepolicy>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="5">
-        <widget class="QLineEdit" name="lineEdit"/>
-       </item>
        <item row="1" column="1">
         <widget class="QDateEdit" name="dateEdit">
          <property name="dateTime">
@@ -87,7 +84,14 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="13">
+       <item row="3" column="4">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>删除</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="15">
         <widget class="QTableView" name="table_inout">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -121,14 +125,57 @@
          </attribute>
         </widget>
        </item>
-       <item row="2" column="4">
+       <item row="3" column="3">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>修改</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="inout_add">
+         <property name="text">
+          <string>添加</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>产品编号</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>产品名称</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>单号</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>显示全部</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="6">
         <widget class="QPushButton" name="pushButton_4">
          <property name="text">
           <string>导出</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="5">
+       <item row="3" column="5">
         <widget class="QPushButton" name="pushButton_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -141,50 +188,8 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>修改</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="inout_add">
-         <property name="text">
-          <string>添加</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="6">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>*表示全部</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>产品名称</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>产品编号</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>单号</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-        </widget>
+       <item row="1" column="5">
+        <widget class="QLineEdit" name="lineEdit"/>
        </item>
       </layout>
      </widget>
