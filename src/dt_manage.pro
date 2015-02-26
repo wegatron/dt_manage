@@ -59,5 +59,5 @@ FORMS    += mainwindow.ui \
     modifyorderdialog.ui \
     inoutmodify.ui
 
-LIBS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so
-PRE_TARGETDEPS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so
+#LIBS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so
+#PRE_TARGETDEPS += /home/wegatron/workspace/dt_manage/src/ext_lib/libxl.so
