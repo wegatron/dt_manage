@@ -54,6 +54,8 @@ void OrderManageMainWindow::reload_query()
 
 void OrderManageMainWindow::on_pushButton_clicked()
 {
+    QObject::connect(&addorder_dialog, SIGNAL(updateOrderQuery()),
+                       this, SLOT(on_pushButton_4_clicked()));
     addorder_dialog.show();
 }
 
@@ -79,6 +81,8 @@ void OrderManageMainWindow::on_pushButton_2_clicked()
     modifyorder_dialog.setOrderData(order_data);
     modifyorder_dialog.show();
     modifyorder_dialog.setOriId(order_data.id_s);
+    QObject::connect(&modifyorder_dialog, SIGNAL(updateOrderQuery()),
+                       this, SLOT(on_pushButton_4_clicked()));
 }
 
 void OrderManageMainWindow::on_pushButton_3_clicked()
@@ -107,6 +111,7 @@ void OrderManageMainWindow::on_pushButton_3_clicked()
     } else {
         QMessageBox::information(this, "信息", "删除订单" + selected_id + "失败!");
     }
+    on_pushButton_4_clicked();
 }
 
 void OrderManageMainWindow::on_pushButton_4_clicked()

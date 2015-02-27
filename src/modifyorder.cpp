@@ -64,4 +64,5 @@ void ModifyOrderDialog::on_buttonBox_accepted()
     } else {
         QMessageBox::information(this, "信息", "修改订单失败!");
     }
+    emit updateOrderQuery();
 }

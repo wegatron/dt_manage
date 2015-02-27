@@ -101,6 +101,7 @@ void InoutDialog::on_buttonBox_accepted()
     {
         QMessageBox::information(this, "信息", msg);
     }
+    emit updateInoutQuery();
     return;
 }
 

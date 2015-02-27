@@ -1,6 +1,8 @@
 #ifndef STOCKMAINWINDOW_H
 #define STOCKMAINWINDOW_H
 
+#include <string>
+
 #include <QMainWindow>
 
 #include <QtGui>
@@ -24,6 +26,7 @@ private slots:
     void on_stock_export_clicked();
 
 private:
+    std::string query_remarks; // for exported excel
     QStandardItemModel *stock_model;
     QSortFilterProxyModel *sort_filter;
     Ui::StockMainWindow *ui;

@@ -44,7 +44,7 @@ void AddOrderDialog::on_buttonBox_accepted()
     } else {
         QMessageBox::information(this, "信息", "添加订单失败!");
     }
-
+    emit updateOrderQuery();
 }
 
 void AddOrderDialog::getOrderData(OrderData &order_data)

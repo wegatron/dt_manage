@@ -48,6 +48,7 @@ void AddProductDialog::on_buttonBox_accepted()
     } else {
         QMessageBox::information(this, "信息", "添加产品失败!");
     }
+    emit updateProductQuery();
 }
 
 void AddProductDialog::setProductData(const ProductData &pro_data)

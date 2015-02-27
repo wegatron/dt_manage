@@ -26,7 +26,7 @@ CREATE TABLE product (
     "unit" TEXT NOT NULL,
     "price" REAL NOT NULL,
     "specification" TEXT NOT NULL,
-    "quality_remain" REAL  NOT NULL  DEFAULT (0.0),
+    "quality_remain" REAL  NOT NULL  DEFAULT (0.0)，
     "remarks" TEXT
 )
 

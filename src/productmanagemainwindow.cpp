@@ -59,6 +59,8 @@ void ProductManageMainWindow::reload_query()
 
 void ProductManageMainWindow::on_add_clicked()
 {
+    QObject::connect(&add_product_dialog, SIGNAL(updateProductQuery()),
+                           this, SLOT(on_pushButton_clicked()));
     add_product_dialog.show();
 }
 
@@ -86,6 +88,8 @@ void ProductManageMainWindow::on_modify_clicked()
     modify_product_dialog.setProductData(pro_data);
     modify_product_dialog.show();
     modify_product_dialog.setOriId(pro_data.p_id_s);
+    QObject::connect(&modify_product_dialog, SIGNAL(updateProductQuery()),
+                           this, SLOT(on_pushButton_clicked()));
 }
 
 void ProductManageMainWindow::on_delete_2_clicked()
@@ -115,6 +119,7 @@ void ProductManageMainWindow::on_delete_2_clicked()
     } else {
         QMessageBox::information(this, "信息", "删除产品" + selected_id + "失败!");
     }
+    on_pushButton_clicked();
 }
 
 void ProductManageMainWindow::on_pushButton_clicked()

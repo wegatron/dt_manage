@@ -46,6 +46,7 @@ void StockMainWindow::reload_query()
 
     QString date_from = ui->sqd_begin->text();
     QString date_to = ui->sqd_end->text();
+    query_remarks = "从"+ui->sqd_begin->text().toStdString()+"到"+ui->sqd_end->text().toStdString()+"产品库存变化信息";
     int i=0;
     while(query.next())
     {
@@ -87,18 +88,22 @@ void StockMainWindow::on_stock_query_clicked()
 
     QSqlDatabase &db = DtDataBase::getDtDataBase();
     QSqlQuery query(db);
+    QString value = "%" + ui->sq_connent->text() + "%";
     switch(ui->comboBox->currentIndex())
     {
-    case 0:
-        query.prepare("select id, name, specification, unit from product where id like :product_id");
-        query.bindValue(":product_id", ui->sq_connent->text());
-        break;
     case 1:
-        query.prepare("select id, name, specification, unit from product where name like :product_name");
-        query.bindValue(":product_name", ui->sq_connent->text());
+        query.prepare("select id, name, specification, unit from product where id like :product_id");
+        query.bindValue(":product_id", value);
+        query_remarks = "从"+ui->sqd_begin->text().toStdString()+"到"+ui->sqd_end->text().toStdString()+"产品编号包含"+ui->sq_connent->text().toStdString()+"的产品库存变化信息";
         break;
-    default:
+    case 2:
+        query.prepare("select id, name, specification, unit from product where name like :product_name");
+        query_remarks = "从"+ui->sqd_begin->text().toStdString()+"到"+ui->sqd_end->text().toStdString()+"产品名称包含"+ui->sq_connent->text().toStdString()+"的产品库存变化信息";
+        query.bindValue(":product_name", value);
+        break;
+    default: // 0
         query.prepare("select id, name, specification, unit from product");
+        query_remarks = "从"+ui->sqd_begin->text().toStdString()+"到"+ui->sqd_end->text().toStdString()+"的产品库存变化信息";
     }
 
     query.exec();
@@ -135,8 +140,9 @@ void StockMainWindow::on_stock_export_clicked()
 {
     QString fileName = QFileDialog::getSaveFileName(this,
             tr("保存Exel文件为"), "",
-            tr("Excel文件 (*.xls);;所有文件 (*)"));
+            tr("Excel文件 (*.csv);;所有文件 (*)"));
+    std::string header = "产品编号,产品名称/规格,单位,上期结存,入库数,出库数,结存";
     if(fileName.length() != 0) {
-        ExportExcel(fileName, sort_filter);
+        ExportExcel(fileName, sort_filter,header, query_remarks);
     }
 }

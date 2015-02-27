@@ -97,17 +97,17 @@
         <widget class="QComboBox" name="comboBox">
          <item>
           <property name="text">
+           <string>全部</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>产品编号</string>
           </property>
          </item>
          <item>
           <property name="text">
            <string>产品名称</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>全部</string>
           </property>
          </item>
         </widget>
@@ -123,7 +123,7 @@
      <x>0</x>
      <y>0</y>
      <width>684</width>
-     <height>25</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

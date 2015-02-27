@@ -31,7 +31,7 @@
            <hour>0</hour>
            <minute>0</minute>
            <second>0</second>
-           <year>2014</year>
+           <year>2000</year>
            <month>1</month>
            <day>1</day>
           </datetime>
@@ -48,7 +48,7 @@
            <hour>0</hour>
            <minute>0</minute>
            <second>0</second>
-           <year>2014</year>
+           <year>2050</year>
            <month>1</month>
            <day>1</day>
           </datetime>
@@ -143,6 +143,11 @@
         <widget class="QComboBox" name="comboBox">
          <item>
           <property name="text">
+           <string>全部</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>产品编号</string>
           </property>
          </item>
@@ -154,11 +159,6 @@
          <item>
           <property name="text">
            <string>单号</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>显示全部</string>
           </property>
          </item>
          <item>
@@ -202,7 +202,7 @@
      <x>0</x>
      <y>0</y>
      <width>726</width>
-     <height>25</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

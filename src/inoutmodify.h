@@ -22,6 +22,9 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+signals:
+     void updateInoutQuery(void);
+
 private:
     void setOrderIds();
     void setProDuctInfo();

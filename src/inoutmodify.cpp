@@ -163,4 +163,5 @@ void InoutModifyDialog::on_buttonBox_accepted()
         QMessageBox::information(this, "信息", err_msg);
         return;
     }
+    emit updateInoutQuery();
 }

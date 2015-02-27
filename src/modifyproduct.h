@@ -21,6 +21,10 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+
+signals:
+     void updateProductQuery(void);
+
 private:
     Ui::ModifyProductDialog *ui;
     QString ori_id; // origional id of the modifying infomation

@@ -29,7 +29,8 @@ private slots:
     void on_delete_2_clicked();
 
     void on_pushButton_clicked();
-
+signals:
+     void updateProductQuery(void);
 private:
     Ui::ProductManageMainWindow *ui;
     QStandardItemModel *product_model;

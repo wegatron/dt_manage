@@ -70,4 +70,5 @@ void ModifyProductDialog::on_buttonBox_accepted()
     } else {
         QMessageBox::information(this, "信息", "修改产品失败!");
     }
+    emit updateProductQuery();
 }

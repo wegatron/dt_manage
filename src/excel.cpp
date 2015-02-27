@@ -1,25 +1,40 @@
 #include "excel.h"
 
-#include <libxl.h>
+#include "stdio.h"
 
-using namespace libxl;
+#include "encode.h"
 
-void ExportExcel(const QString &filename, const QSortFilterProxyModel *sort_filter)
+void ExportExcel(const QString &filename, const QSortFilterProxyModel *sort_filter,
+                 const std::string &header, const std::string &remark)
 {
-//    Book* book = xlCreateBook();
-//    if(book)
-//    {
-//        Sheet* sheet = book->addSheet("Custom formats");
-//        if(sheet)
-//        {
-//            sheet->writeStr(0,0, "哈哈!");
-//        }
 
-//        if(book->save(filename.toStdString().c_str())) {
-//            //std::cout << "File custom.xls has been created." << std::endl;
-//        }
-//        book->release();
-//    }
+    QMessageBox::information(NULL,"info",filename);
+    std::string std_filename = filename.toStdString();
+    std::string r_filename = UTF8ToGB2312(std_filename);
+    FILE *fp = fopen(r_filename.c_str(), "w");
 
+    if(fp == NULL) {
+        QMessageBox::information(NULL, "错误", "打开文件:"+filename+"失败！");
+        return;
+    }
+    fprintf(fp, "%s\n",UTF8ToGB2312( header).c_str() );
+    int row = sort_filter->rowCount();
+    int col = sort_filter->columnCount();
+
+    for(int i=0; i<row; ++i)
+    {
+        int j=0;
+        for (; j<col-1; ++j)
+        {
+            std::string tmp_pre = sort_filter->data(sort_filter->index(i,j)).toString().toStdString();
+            std::string tmp_after = UTF8ToGB2312(tmp_pre);
+            fprintf(fp, "%s ,", tmp_after.c_str() );
+        }
+        std::string tmp_pre = sort_filter->data(sort_filter->index(i,j)).toString().toStdString();
+        std::string tmp_after = UTF8ToGB2312(tmp_pre);
+        fprintf(fp, "%s\n", tmp_after.c_str() );
+    }
+    fprintf(fp, "%s\n",UTF8ToGB2312( remark ).c_str() );
+    fclose(fp);
     return;
 }

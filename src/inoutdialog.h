@@ -21,6 +21,9 @@ public:
     void setProDuctInfo();
     int getInOutData(InOutData &inout_data);
 
+signals:
+     void updateInoutQuery(void);
+
 private slots:
     void on_p_id_currentIndexChanged(int index);
 

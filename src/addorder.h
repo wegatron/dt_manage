@@ -19,6 +19,9 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+signals:
+     void updateOrderQuery(void);
+
 private:
     Ui::AddOrderDialog *ui;
 };

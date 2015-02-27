@@ -20,7 +20,8 @@ public:
     void setOriId(const QString &id) { ori_id = id; }
 private slots:
     void on_buttonBox_accepted();
-
+signals:
+     void updateOrderQuery(void);
 private:
     Ui::ModifyOrderDialog *ui;
     QString ori_id;

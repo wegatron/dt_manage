@@ -20,6 +20,8 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+signals:
+     void updateProductQuery(void);
 private:
     Ui::AddProductDialog *ui;
 };

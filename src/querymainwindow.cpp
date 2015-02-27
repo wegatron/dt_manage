@@ -3,8 +3,11 @@
 
 #include <QtGui>
 #include <QStandardItemModel>
+#include <iostream>
 
 #include "database.h"
+
+#include "excel.h"
 
 QueryMainWindow::QueryMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -59,6 +62,7 @@ void QueryMainWindow::reload_query()
     ui->table_inout->setModel (sort_filter);
     ui->table_inout->setSortingEnabled(true);
     ui->table_inout->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    query_remarks = "所有出入库信息";
 }
 
 void QueryMainWindow::on_inout_add_clicked()
@@ -66,6 +70,8 @@ void QueryMainWindow::on_inout_add_clicked()
     inout_dlg.setOrderIds();
     inout_dlg.setProDuctInfo();
     inout_dlg.show();
+    QObject::connect(&inout_dlg, SIGNAL(updateInoutQuery()),
+                           this, SLOT(on_pushButton_2_clicked()));
 }
 
 void QueryMainWindow::on_pushButton_3_clicked()
@@ -92,6 +98,8 @@ void QueryMainWindow::on_pushButton_3_clicked()
     inout_modify_dlg.init();
     inout_modify_dlg.setInOutData(inout_data);
     inout_modify_dlg.show();
+    QObject::connect(&inout_modify_dlg, SIGNAL(updateInoutQuery()),
+                           this, SLOT(on_pushButton_2_clicked()));
 }
 
 void QueryMainWindow::on_pushButton_clicked()
@@ -130,6 +138,7 @@ void QueryMainWindow::on_pushButton_clicked()
     } else {
         QMessageBox::information(this, "信息", "删除出入库信息失败!");
     }
+    on_pushButton_2_clicked();
 }
 
 void QueryMainWindow::on_pushButton_2_clicked()
@@ -142,20 +151,28 @@ void QueryMainWindow::on_pushButton_2_clicked()
             +ui->dateEdit_2->text()+"')";
     switch(ui->comboBox->currentIndex())
     {
-    case 0:
+    case 1:
         query.prepare(prepare_str+"and product_id like :product_id");
         query.bindValue(":product_id",value);
-        break;
-    case 1:
-        query.prepare(prepare_str+"and product_name like :product_name");
-        query.bindValue(":product_name",value);
+        query_remarks = "从"+ui->dateEdit->text().toStdString()+
+                "到"+ui->dateEdit_2->text().toStdString()+"产品编号包含"+ui->lineEdit->text().toStdString()+"的出入库信息";
         break;
     case 2:
+        query.prepare(prepare_str+"and product_name like :product_name");
+        query.bindValue(":product_name",value);
+        query_remarks = "从"+ui->dateEdit->text().toStdString()+"到"+
+                ui->dateEdit_2->text().toStdString()+"产品名称包含"+ui->lineEdit->text().toStdString()+"的出入库信息";
+        break;
+    case 3:
         query.prepare(prepare_str+"and order_number like :order_number");
         query.bindValue(":order_number",value);
+        query_remarks = "从"+ui->dateEdit->text().toStdString()+
+                "到"+ui->dateEdit_2->text().toStdString()+"产品编号单号"+ui->lineEdit->text().toStdString()+"的出入库信息";
         break;
-    default:
+    default: // 0
         query.prepare(prepare_str);
+        query_remarks = "从"+ui->dateEdit->text().toStdString()+
+                "到"+ui->dateEdit_2->text().toStdString()+"的出入库信息";
         break;
     }
     query.exec();
@@ -190,4 +207,15 @@ void QueryMainWindow::on_pushButton_2_clicked()
     ui->table_inout->setModel (sort_filter);
     ui->table_inout->setSortingEnabled(true);
     ui->table_inout->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
+
+void QueryMainWindow::on_pushButton_4_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("保存Exel文件为"), "",
+            tr("Excel文件 (*.csv);;所有文件 (*)"));
+    std::string header = "信息编号,产品编号,产品名称/规格,单号,日期,库存变化,结存,内容摘要";
+    if(fileName.length() != 0) {
+        ExportExcel(fileName, sort_filter, header, query_remarks);
+    }
 }

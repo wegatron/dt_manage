@@ -1,6 +1,7 @@
 #ifndef QUERYMAINWINDOW_H
 #define QUERYMAINWINDOW_H
 
+#include <string>
 #include <vector>
 
 #include <QMainWindow>
@@ -33,7 +34,10 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
+    std::string query_remarks; // for exported excel
     QStandardItemModel *inout_model;
     QSortFilterProxyModel *sort_filter;
     Ui::QueryMainWindow *ui;
